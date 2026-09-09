@@ -4,6 +4,15 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
 app.use(express.json());
 
 const ITEMS_FILE = path.join(__dirname, 'items.json');
@@ -131,7 +140,7 @@ app.delete('/api/items/:id', (req, res) => {
   res.status(204).send();
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
