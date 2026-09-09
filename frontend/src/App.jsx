@@ -6,12 +6,10 @@ function App() {
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
 
-  // Filter states
   const [filterType, setFilterType] = useState('')
   const [filterStatus, setFilterStatus] = useState('')
   const [filterPlace, setFilterPlace] = useState('')
 
-  // New item form state
   const [form, setForm] = useState({
     itemName: '',
     type: 'lost',
@@ -20,7 +18,6 @@ function App() {
     contact: ''
   })
 
-  // Edit item state
   const [editingId, setEditingId] = useState(null)
   const [editForm, setEditForm] = useState({
     itemName: '',
